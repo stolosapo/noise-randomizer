@@ -5,10 +5,10 @@ bin_PROGRAMS = noiserandomizer
 
 mainincludedir = $(includedir)/noiserandomizer
 maininclude_HEADERS = \
-    all_header_files.h
+    NoiseRandomizer.h
 
 common_sources = \
-    all_source_files.cpp
+    NoiseRandomizer.cpp
 
 noiserandomizer_SOURCES = main.cpp $(common_sources)
 noiserandomizer_LDADD = libnoiserandomizer.la

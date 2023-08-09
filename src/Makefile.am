@@ -13,6 +13,7 @@ common_sources = \
     NoiseRandomizer.cpp \
     Pattern.cpp \
     Arguments.h Arguments.cpp \
+    Logger.h Logger.cpp \
     StringHelper.h StringHelper.cpp \
     FileHelper.h FileHelper.cpp
 

@@ -20,5 +20,12 @@ NoiseRandomizer::~NoiseRandomizer()
 
 void NoiseRandomizer::run()
 {
-    
+    while (!sigAdapter->gotSigInt())
+    {
+        // Get Pattern
+
+        // Get Next State Interval
+
+        // Apply it!
+    }
 }

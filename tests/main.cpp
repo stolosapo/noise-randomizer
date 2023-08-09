@@ -7,7 +7,7 @@ using namespace NoiseTest;
 
 int main(int argc, char* argv[])
 {
-    cout << "<autotoolscpplibtemplate> Tests" << endl << endl;
+    cout << "noiserandomizer Tests" << endl << endl;
 
     MainTestSuite suite;
 

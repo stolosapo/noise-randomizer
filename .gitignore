@@ -27,7 +27,7 @@
 *.exe
 *.out
 *.app
-<autotoolscpplibtemplate>
+noiserandomizer
 tester
 example
 

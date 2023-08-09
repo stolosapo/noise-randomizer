@@ -4,6 +4,6 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-    cout << "<autotoolscpplibtemplate> Library" << endl << endl;
+    cout << "noiserandomizer Library" << endl << endl;
     cout << "Bye Bye.." << endl;
 }

@@ -7,11 +7,13 @@ mainincludedir = $(includedir)/noiserandomizer
 maininclude_HEADERS = \
     NoiseRandomizer.h \
     State.h \
-    Pattern.h
+    Pattern.h \
+    Simple555Pattern.h
 
 common_sources = \
     NoiseRandomizer.cpp \
     Pattern.cpp \
+    Simple555Pattern.cpp \
     Arguments.h Arguments.cpp \
     Logger.h Logger.cpp \
     StringHelper.h StringHelper.cpp \

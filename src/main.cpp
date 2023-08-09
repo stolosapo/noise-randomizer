@@ -3,6 +3,7 @@
 #include "Logger.h"
 #include "NoiseRandomizer.h"
 #include "Arguments.h"
+#include "Simple555Pattern.h"
 
 using namespace std;
 
@@ -26,8 +27,13 @@ int main(int argc, char* argv[])
     logFile = arguments.logFile();
     logger.info("LogLevel set to: " + convertLogLevelToString(logLevel));
 
+    // Build Patterns
+    Simple555Pattern *simple555Pattern = new Simple555Pattern(1, 1);
+
     // Build Randomizer
     vector<Pattern*> patterns;
+    patterns.push_back(simple555Pattern);
+    
     NoiseRandomizer randomizer(&logger, &signalAdapter, patterns);
 
     // Run

@@ -5,7 +5,6 @@
 #include <vector>
 #include <noisekernel/Logger.h>
 #include <noisekernel/Signal.h>
-#include <noisekernel/Thread.h>
 #include "Pattern.h"
 
 using namespace std;

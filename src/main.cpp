@@ -15,11 +15,18 @@ int main(int argc, char* argv[])
 {
     srand(time(NULL));
     
-    cout << "noiserandomizer" << endl << endl;
-
     // Parse Arguments
     NoiseKernel::ArgumentProvider provider(argc, argv);
     Arguments arguments(&provider);
+    arguments.registerArguments();
+
+    if (provider.hasArg("help"))
+    {
+        cout << arguments.help() << endl;
+        exit(0);
+    }
+
+    cout << "noiserandomizer" << endl << endl;
 
     // Setup Signals
     NoiseKernel::SignalAdapter signalAdapter;
@@ -43,8 +50,8 @@ int main(int argc, char* argv[])
     StateApplier* applier = (StateApplier*) new GPIOApplier;
 
     NoiseRandomizerConfig config;
-    // config.useRandomPattern = false;
-    // config.changePatternMsFreq = 1000 * 10;
+    config.useRandomPattern = arguments.useRandomPatterns();
+    config.changePatternMsFreq = 1000 * arguments.patternChangeMsFreq();
     
     NoiseRandomizer randomizer(&logger, &signalAdapter, patterns, applier, config);
 

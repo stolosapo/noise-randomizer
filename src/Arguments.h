@@ -13,6 +13,8 @@ class Arguments: public ArgumentAdapter
 private:
     static const string LOGLEVEL;
     static const string LOGFILE;
+    static const string USE_RANDOM_PATTERNS;
+    static const string PATTERN_CHANGE_MS_FREQ;
 
 protected:
     virtual string title();
@@ -27,6 +29,9 @@ public:
     LogLevel getLogLevel();
     bool shouldLogToFile();
     string logFile();
+
+    bool useRandomPatterns();
+    int patternChangeMsFreq();
 };
 
 #endif // Arguments_h__

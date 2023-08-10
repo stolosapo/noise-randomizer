@@ -43,8 +43,8 @@ int main(int argc, char* argv[])
     StateApplier* applier = (StateApplier*) new GPIOApplier;
 
     NoiseRandomizerConfig config;
-    config.useRandomPattern = false;
-    config.changePatternMsFreq = 1000 * 30;
+    // config.useRandomPattern = false;
+    // config.changePatternMsFreq = 1000 * 10;
     
     NoiseRandomizer randomizer(&logger, &signalAdapter, patterns, applier, config);
 

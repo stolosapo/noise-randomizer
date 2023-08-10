@@ -20,15 +20,45 @@ NoiseRandomizer::NoiseRandomizer(
     _locker.init();
     
     currentPatternIdx = 0;
+    patternThread = NULL;
 }
 
 NoiseRandomizer::~NoiseRandomizer()
 {
     _locker.destroy();
+
+    if (patternThread != NULL)
+    {
+        patternThread->wait();
+        delete patternThread;
+    }
+}
+
+void* NoiseRandomizer::changePatternAsync(void* noiseRandomizer)
+{
+    NoiseRandomizer* self = (NoiseRandomizer*) noiseRandomizer;
+    
+    if (self->config.changePatternMsFreq <= 0)
+    {
+        return NULL;
+    }
+
+    while (!self->sigAdapter->gotSigInt())
+    {
+        usleep(1000 * self->config.changePatternMsFreq);
+        self->loadNextPattern();
+    }
+
+    return NULL;
 }
 
 void NoiseRandomizer::run()
 {
+    // Start Change Patterns Thread
+    patternThread = new Thread;
+    patternThread->attachDelegate(&NoiseRandomizer::changePatternAsync);
+    patternThread->start(this);
+
     while (!sigAdapter->gotSigInt())
     {
         // Get Pattern

@@ -30,9 +30,12 @@ private:
 
     vector<Pattern*> patterns;
     int currentPatternIdx;
+    Thread* patternThread;
 
     Pattern* getPattern();
     void loadNextPattern();
+
+    static void* changePatternAsync(void* noiseRandomizer);
 
 public:
     NoiseRandomizer(

@@ -29,7 +29,7 @@ int main(int argc, char* argv[])
     logger.info("LogLevel set to: " + convertLogLevelToString(logLevel));
 
     // Build Patterns
-    Simple555Pattern *simple555Pattern = new Simple555Pattern(1, 1);
+    Simple555Pattern *simple555Pattern = new Simple555Pattern(1000, 1000);
 
     // Build Randomizer
     vector<Pattern*> patterns;

@@ -11,7 +11,7 @@ enum State
 struct StateInterval
 {
     State state;
-    int seconds;
+    int millisec;
 };
 
 #endif // State_h__

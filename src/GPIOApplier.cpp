@@ -13,6 +13,5 @@ GPIOApplier::~GPIOApplier()
 
 void GPIOApplier::apply(StateInterval state)
 {
-    cout << "STATE: " << state.state << " SEC: " << state.seconds << endl;
-    usleep(1000 * 1000 * state.seconds);
+    usleep(1000 * state.millisec);
 }

@@ -1,5 +1,6 @@
 #include "NoiseRandomizer.h"
 #include <unistd.h>
+#include "StringHelper.h"
 
 using namespace NoiseKernel;
 
@@ -29,7 +30,7 @@ void NoiseRandomizer::run()
         Pattern* p = getPattern();
         if (p == NULL)
         {
-            logSrv->debug("No pattern found");
+            logSrv->error("No pattern found");
             break;
         }
 
@@ -38,6 +39,8 @@ void NoiseRandomizer::run()
 
         // Apply it!
         applier->apply(s);
+
+        logSrv->info("State applied: " + numberToString<State>(s.state) + ", ms: " + numberToString<int>(s.millisec));
     }
 }
 

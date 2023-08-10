@@ -26,11 +26,11 @@ StateInterval Simple555Pattern::getNextStateInterval()
     
     StateInterval interval;
     interval.state = NO;
-    interval.seconds = noSec;
+    interval.millisec = noSec;
     if (c % 2 == 0) 
     {
         interval.state = NC;
-        interval.seconds = ncSec;
+        interval.millisec = ncSec;
     }
 
     return interval;

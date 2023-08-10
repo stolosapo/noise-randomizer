@@ -8,6 +8,7 @@
 #include <noisekernel/Signal.h>
 #include <noisekernel/Thread.h>
 #include "Pattern.h"
+#include "StateApplier.h"
 
 using namespace std;
 using namespace NoiseKernel;
@@ -18,6 +19,7 @@ private:
     Locker _locker;
     LogService *logSrv;
     SignalAdapter* sigAdapter;
+    StateApplier* applier;
 
     vector<Pattern*> patterns;
 
@@ -27,7 +29,8 @@ public:
     NoiseRandomizer(
         LogService *logSrv,
         SignalAdapter* sigAdapter,
-        vector<Pattern*> patterns);
+        vector<Pattern*> patterns,
+        StateApplier* applier);
     virtual ~NoiseRandomizer();
 
     void run();

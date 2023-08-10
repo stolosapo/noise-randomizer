@@ -8,12 +8,16 @@ maininclude_HEADERS = \
     NoiseRandomizer.h \
     State.h \
     Pattern.h \
-    Simple555Pattern.h
+    Simple555Pattern.h \
+    StateApplier.h \
+    GPIOApplier.h
 
 common_sources = \
     NoiseRandomizer.cpp \
     Pattern.cpp \
     Simple555Pattern.cpp \
+    StateApplier.cpp \
+    GPIOApplier.cpp \
     Arguments.h Arguments.cpp \
     Logger.h Logger.cpp \
     StringHelper.h StringHelper.cpp \

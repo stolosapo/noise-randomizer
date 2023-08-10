@@ -6,10 +6,12 @@ using namespace NoiseKernel;
 NoiseRandomizer::NoiseRandomizer(
     LogService *logSrv,
     SignalAdapter* sigAdapter,
-    vector<Pattern*> patterns)
+    vector<Pattern*> patterns,
+    StateApplier* applier)
     : logSrv(logSrv),
     sigAdapter(sigAdapter),
-    patterns(patterns)
+    patterns(patterns),
+    applier(applier)
 {
     _locker.init();
 }
@@ -35,8 +37,7 @@ void NoiseRandomizer::run()
         StateInterval s = p->getNextStateInterval();
 
         // Apply it!
-        cout << "STATE: " << s.state << " SEC: " << s.seconds << endl;
-        usleep(1000 * 1000 * s.seconds);
+        applier->apply(s);
     }
 }
 

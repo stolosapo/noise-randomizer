@@ -4,6 +4,7 @@
 #include "NoiseRandomizer.h"
 #include "Arguments.h"
 #include "Simple555Pattern.h"
+#include "GPIOApplier.h"
 
 using namespace std;
 
@@ -33,11 +34,17 @@ int main(int argc, char* argv[])
     // Build Randomizer
     vector<Pattern*> patterns;
     patterns.push_back(simple555Pattern);
+
+    StateApplier* applier = (StateApplier*) new GPIOApplier;
     
-    NoiseRandomizer randomizer(&logger, &signalAdapter, patterns);
+    NoiseRandomizer randomizer(&logger, &signalAdapter, patterns, applier);
 
     // Run
     randomizer.run();
+
+    // Finalize
+    delete applier;
+    delete simple555Pattern;
 
     cout << "Bye Bye.." << endl;
 }

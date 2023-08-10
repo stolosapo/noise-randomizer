@@ -1,11 +1,9 @@
 #include "Simple555Pattern.h"
 
-Simple555Pattern::Simple555Pattern(int noSec, int ncSec): Pattern()
+Simple555Pattern::Simple555Pattern(int noSec, int ncSec): Pattern(), noSec(noSec), ncSec(ncSec)
 {
     _locker.init();
     counter = 0;
-    this->noSec = noSec;
-    this->ncSec = ncSec;
 }
 
 Simple555Pattern::~Simple555Pattern()

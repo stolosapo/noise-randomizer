@@ -104,7 +104,7 @@ void NoiseRandomizer::loadNextPattern()
     }
     else if (config.useRandomPattern)
     {
-        nextIdx = randomBetween(0, patterns.size() - 1);
+        nextIdx = randomBetween(0, patterns.size());
     }
     else 
     {

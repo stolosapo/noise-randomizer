@@ -42,10 +42,14 @@ int main(int argc, char* argv[])
 
     // Build Patterns
     Simple555Pattern *simple555Pattern = new Simple555Pattern(1000, 1000);
+    Simple555Pattern *simple555Pattern2 = new Simple555Pattern(500, 1500);
+    Simple555Pattern *simple555Pattern3 = new Simple555Pattern(250, 1750);
 
     // Build Randomizer
     vector<Pattern*> patterns;
     patterns.push_back(simple555Pattern);
+    patterns.push_back(simple555Pattern2);
+    patterns.push_back(simple555Pattern3);
 
     StateApplier* applier = (StateApplier*) new GPIOApplier;
 
@@ -60,6 +64,8 @@ int main(int argc, char* argv[])
 
     // Finalize
     delete applier;
+    delete simple555Pattern3;
+    delete simple555Pattern2;
     delete simple555Pattern;
 
     cout << "Bye Bye.." << endl;

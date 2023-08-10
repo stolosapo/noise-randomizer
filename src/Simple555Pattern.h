@@ -13,8 +13,8 @@ class Simple555Pattern: public Pattern
 private:
     Locker _locker;
     int counter;
-    int noSec;
-    int ncSec;
+    int noMilliSec;
+    int ncMilliSec;
 
     int incrementCounter();
 

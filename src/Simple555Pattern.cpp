@@ -1,6 +1,6 @@
 #include "Simple555Pattern.h"
 
-Simple555Pattern::Simple555Pattern(int noSec, int ncSec): Pattern(), noSec(noSec), ncSec(ncSec)
+Simple555Pattern::Simple555Pattern(int noSec, int ncSec): Pattern(), noMilliSec(noSec), ncMilliSec(ncSec)
 {
     _locker.init();
     counter = 0;
@@ -26,11 +26,11 @@ StateInterval Simple555Pattern::getNextStateInterval()
     
     StateInterval interval;
     interval.state = NO;
-    interval.millisec = noSec;
+    interval.millisec = noMilliSec;
     if (c % 2 == 0) 
     {
         interval.state = NC;
-        interval.millisec = ncSec;
+        interval.millisec = ncMilliSec;
     }
 
     return interval;

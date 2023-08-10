@@ -21,7 +21,8 @@ common_sources = \
     Arguments.h Arguments.cpp \
     Logger.h Logger.cpp \
     StringHelper.h StringHelper.cpp \
-    FileHelper.h FileHelper.cpp
+    FileHelper.h FileHelper.cpp \
+    random.h random.cpp
 
 noiserandomizer_SOURCES = main.cpp $(common_sources)
 noiserandomizer_LDADD = libnoiserandomizer.la

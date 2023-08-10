@@ -1,4 +1,7 @@
 #include <iostream>
+#include <algorithm>
+#include <stdlib.h>
+#include <time.h>
 #include <noisekernel/Signal.h>
 #include "Logger.h"
 #include "NoiseRandomizer.h"
@@ -10,6 +13,8 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
+    srand(time(NULL));
+    
     cout << "noiserandomizer" << endl << endl;
 
     // Parse Arguments
@@ -36,8 +41,12 @@ int main(int argc, char* argv[])
     patterns.push_back(simple555Pattern);
 
     StateApplier* applier = (StateApplier*) new GPIOApplier;
+
+    NoiseRandomizerConfig config;
+    config.useRandomPattern = false;
+    config.changePatternMsFreq = 1000 * 30;
     
-    NoiseRandomizer randomizer(&logger, &signalAdapter, patterns, applier);
+    NoiseRandomizer randomizer(&logger, &signalAdapter, patterns, applier, config);
 
     // Run
     randomizer.run();

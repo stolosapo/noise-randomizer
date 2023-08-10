@@ -13,6 +13,12 @@
 using namespace std;
 using namespace NoiseKernel;
 
+struct NoiseRandomizerConfig
+{
+    bool useRandomPattern;
+    int changePatternMsFreq;
+};
+
 class NoiseRandomizer
 {
 private:
@@ -20,17 +26,21 @@ private:
     LogService *logSrv;
     SignalAdapter* sigAdapter;
     StateApplier* applier;
+    NoiseRandomizerConfig config;
 
     vector<Pattern*> patterns;
+    int currentPatternIdx;
 
     Pattern* getPattern();
+    void loadNextPattern();
 
 public:
     NoiseRandomizer(
         LogService *logSrv,
         SignalAdapter* sigAdapter,
         vector<Pattern*> patterns,
-        StateApplier* applier);
+        StateApplier* applier,
+        NoiseRandomizerConfig config);
     virtual ~NoiseRandomizer();
 
     void run();

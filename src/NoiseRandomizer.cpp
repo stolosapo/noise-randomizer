@@ -1,6 +1,7 @@
 #include "NoiseRandomizer.h"
 #include <unistd.h>
 #include "StringHelper.h"
+#include "random.h"
 
 using namespace NoiseKernel;
 
@@ -8,13 +9,17 @@ NoiseRandomizer::NoiseRandomizer(
     LogService *logSrv,
     SignalAdapter* sigAdapter,
     vector<Pattern*> patterns,
-    StateApplier* applier)
+    StateApplier* applier,
+    NoiseRandomizerConfig config)
     : logSrv(logSrv),
     sigAdapter(sigAdapter),
     patterns(patterns),
-    applier(applier)
+    applier(applier),
+    config(config)
 {
     _locker.init();
+    
+    currentPatternIdx = 0;
 }
 
 NoiseRandomizer::~NoiseRandomizer()
@@ -46,14 +51,43 @@ void NoiseRandomizer::run()
 
 Pattern* NoiseRandomizer::getPattern()
 {
-    if (patterns.size() == 0)
+    if (patterns.size() <= currentPatternIdx)
     {
         return NULL;
     }
 
     _locker.lock();
-    Pattern* p = patterns.at(0);
+    Pattern* p = patterns.at(currentPatternIdx);     
     _locker.unlock();
 
     return p;
+}
+
+void NoiseRandomizer::loadNextPattern()
+{
+    _locker.lock();
+
+    int nextIdx;
+    if (patterns.size() == 1)
+    {
+        nextIdx = 0;
+    }
+    else if (config.useRandomPattern)
+    {
+        nextIdx = randomBetween(0, patterns.size() - 1);
+    }
+    else 
+    {
+        nextIdx = currentPatternIdx + 1;
+        if (nextIdx >= patterns.size())
+        {
+            nextIdx = 0;
+        }
+    }
+
+    currentPatternIdx = nextIdx;
+
+    _locker.unlock();
+
+    logSrv->info("Loaded pattern index: " + numberToString<int>(nextIdx));
 }

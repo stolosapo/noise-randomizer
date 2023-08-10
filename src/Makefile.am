@@ -9,6 +9,7 @@ maininclude_HEADERS = \
     State.h \
     Pattern.h \
     Simple555Pattern.h \
+    RandomPattern.h \
     StateApplier.h \
     GPIOApplier.h
 
@@ -16,6 +17,7 @@ common_sources = \
     NoiseRandomizer.cpp \
     Pattern.cpp \
     Simple555Pattern.cpp \
+    RandomPattern.cpp \
     StateApplier.cpp \
     GPIOApplier.cpp \
     Arguments.h Arguments.cpp \

@@ -9,6 +9,7 @@
 #include "Simple555Pattern.h"
 #include "RandomPattern.h"
 #include "GPIOApplier.h"
+#include "GPIOObject.h"
 
 using namespace std;
 
@@ -48,6 +49,9 @@ int main(int argc, char* argv[])
     RandomPattern *randomPattern1 = new RandomPattern(false, 500, 1000, 250, 1390);
     RandomPattern *randomPattern2 = new RandomPattern(true, 1000, 2000, 500, 3000);
 
+    // Build GPIO Pins
+    GPIOOutObject gpioOut4("4");
+    gpioOut4.setup(); 
 
     // Build Randomizer
     vector<Pattern*> patterns;
@@ -57,7 +61,7 @@ int main(int argc, char* argv[])
     patterns.push_back(randomPattern1);
     patterns.push_back(randomPattern2);
 
-    StateApplier* applier = (StateApplier*) new GPIOApplier;
+    StateApplier* applier = (StateApplier*) new GPIOApplier(&gpioOut4);
 
     NoiseRandomizerConfig config;
     config.useRandomPattern = arguments.useRandomPatterns();

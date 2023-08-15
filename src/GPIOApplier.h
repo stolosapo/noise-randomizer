@@ -3,13 +3,19 @@
 
 #include <iostream>
 #include "StateApplier.h"
+#include "GPIOObject.h"
 
 using namespace std;
 
+GPIOValue state_to_gpio_value(State state);
+
 class GPIOApplier: public StateApplier
 {
+private:
+    GPIOOutObject *gpioOut;
+
 public:
-    GPIOApplier();
+    GPIOApplier(GPIOOutObject *gpioOut);
     virtual ~GPIOApplier();
 
     virtual void apply(StateInterval state);

@@ -12,7 +12,8 @@ maininclude_HEADERS = \
     RandomPattern.h \
     StateApplier.h \
     GPIOObject.h \
-    GPIOApplier.h
+    GPIOApplier.h \
+    Exceptions.h
 
 common_sources = \
     NoiseRandomizer.cpp \
@@ -22,6 +23,7 @@ common_sources = \
     StateApplier.cpp \
     GPIOObject.cpp \
     GPIOApplier.cpp \
+    Exceptions.cpp \
     Arguments.h Arguments.cpp \
     Logger.h Logger.cpp \
     StringHelper.h StringHelper.cpp \

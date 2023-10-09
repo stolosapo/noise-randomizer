@@ -13,7 +13,7 @@ GPIOApplier::~GPIOApplier()
 
 void GPIOApplier::apply(StateInterval state)
 {
-    gpioOut->setValue(state_to_gpio_value(state.state));
+    gpioOut->set(state_to_gpio_value(state.state));
     usleep(1000 * state.millisec);
 }
 

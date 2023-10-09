@@ -112,6 +112,12 @@ void GPIOObject::setup()
 
 void GPIOObject::setValue(GPIOValue value)
 {
+    if (gpioDirection == IN)
+    {
+        throw DomainException(GPIO0006, gpioNum);
+    }
+    
+
     _locker.lock();
 
     try
@@ -139,6 +145,11 @@ void GPIOObject::setValue(GPIOValue value)
 
 GPIOValue GPIOObject::getValue()
 {
+    if (gpioDirection == OUT)
+    {
+        throw DomainException(GPIO0006, gpioNum);
+    }
+
     _locker.lock();
 
     try

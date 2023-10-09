@@ -40,6 +40,10 @@ private:
     void unexportGPIO();
     void setDirection();
 
+protected:
+    void virtual setValue(GPIOValue value);
+    GPIOValue virtual getValue();
+
 public:
     GPIOObject(
         string gpioNum, 
@@ -47,8 +51,6 @@ public:
     virtual ~GPIOObject();
 
     void setup();
-    void setValue(GPIOValue value);
-    GPIOValue getValue();
 };
 
 class GPIOInObject: public GPIOObject
@@ -56,6 +58,8 @@ class GPIOInObject: public GPIOObject
 public:
     GPIOInObject(string gpioNum);
     virtual ~GPIOInObject();
+
+    GPIOValue get();
 };
 
 class GPIOOutObject: public GPIOObject
@@ -63,6 +67,8 @@ class GPIOOutObject: public GPIOObject
 public:
     GPIOOutObject(string gpioNum);
     virtual ~GPIOOutObject();
+
+    void set(GPIOValue value);
 };
 
 #endif // GPIOObject_h__

@@ -1,5 +1,6 @@
 #include "GPIOObject.h"
 #include <fstream>
+#include "Exceptions.h"
 
 using namespace std;
 
@@ -50,8 +51,7 @@ void GPIOObject::exportGPIO()
 
 	if (!exportgpio)
 	{
-		// TODO: throw exception
-        throw std::exception();
+        throw DomainException(GPIO0001, gpioNum);
 	}
 
 	exportgpio << gpioNum ;
@@ -65,8 +65,7 @@ void GPIOObject::unexportGPIO()
 	
 	if (!unexportgpio)
 	{
-		// TODO: throw exception
-        throw std::exception();
+		throw DomainException(GPIO0002, gpioNum);
 	}
 
 	unexportgpio << gpioNum;
@@ -80,8 +79,7 @@ void GPIOObject::setDirection()
 
 	if (!setdirgpio)
 	{
-        // TODO: thow exception
-        throw std::exception();
+        throw DomainException(GPIO0003, gpioNum);
 	}
 
     string dir = gpio_direction_to_string(gpioDirection);
@@ -123,8 +121,7 @@ void GPIOObject::setValue(GPIOValue value)
 
         if (!setvalgpio)
         {
-            // TODO: throw exception;
-            throw std::exception();
+            throw DomainException(GPIO0004, gpioNum);
         }
 
         string val = gpio_value_to_string(value);
@@ -151,8 +148,7 @@ GPIOValue GPIOObject::getValue()
 
         if (!getvalgpio)
         {
-            // TODO: throw exception;
-            throw std::exception();
+            throw DomainException(GPIO0005, gpioNum);
         }
 
         string val;
@@ -169,6 +165,16 @@ GPIOValue GPIOObject::getValue()
     }
 
     _locker.unlock();
+}
+
+GPIOValue GPIOInObject::get()
+{
+    return getValue();
+}
+
+void GPIOOutObject::set(GPIOValue value)
+{
+    setValue(value);
 }
 
 GPIODirection gpio_direction_from_string(string direction)

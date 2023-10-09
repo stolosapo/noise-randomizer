@@ -1,6 +1,7 @@
 #include "FileHelper.h"
 
 #include "StringHelper.h"
+#include "Exceptions.h"
 
 #include <errno.h>
 #include <fstream>
@@ -14,7 +15,7 @@ FILE* openFile(string filename, const char* mode)
 {
     if (!exists(filename.c_str()))
     {
-        // throw DomainException(GNR0001, filename);
+        throw DomainException(GNR0001, filename);
     }
 
     return fopen(filename.c_str(), mode);

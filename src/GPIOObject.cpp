@@ -101,6 +101,16 @@ void GPIOObject::setup()
         exportGPIO();
         setDirection();
     }
+    catch (NoiseKernel::DomainException &e)
+    {
+        _locker.unlock();
+        throw e;
+    }
+    catch (NoiseKernel::RuntimeException &e)
+    {
+        _locker.unlock();
+        throw e;
+    }
     catch(const exception& e)
     {
         _locker.unlock();
@@ -133,6 +143,16 @@ void GPIOObject::setValue(GPIOValue value)
         string val = gpio_value_to_string(value);
         setvalgpio << val;
         setvalgpio.close();
+    }
+    catch (NoiseKernel::DomainException &e)
+    {
+        _locker.unlock();
+        throw e;
+    }
+    catch (NoiseKernel::RuntimeException &e)
+    {
+        _locker.unlock();
+        throw e;
     }
     catch(const exception& e)
     {
@@ -168,6 +188,16 @@ GPIOValue GPIOObject::getValue()
         GPIOValue value = gpio_value_from_string(val);
         getvalgpio.close();
         return value;
+    }
+    catch (NoiseKernel::DomainException &e)
+    {
+        _locker.unlock();
+        throw e;
+    }
+    catch (NoiseKernel::RuntimeException &e)
+    {
+        _locker.unlock();
+        throw e;
     }
     catch(const std::exception& e)
     {

@@ -1,4 +1,5 @@
 #include "Arguments.h"
+#include "Exceptions.h"
 
 const string Arguments::LOGLEVEL = "loglevel";
 const string Arguments::LOGFILE = "logfile";
@@ -51,8 +52,7 @@ string Arguments::logFile()
     string f = getStringValue(LOGFILE);
     if (b && f == "")
     {
-        // TODO: add exception here
-        // throw DomainException(ARG0001, LOGFILE);
+        throw DomainException(ARG0001, LOGFILE);
     }
     return f;
 }

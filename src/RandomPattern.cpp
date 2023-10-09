@@ -35,7 +35,7 @@ int RandomPattern::incrementCounter()
 StateInterval RandomPattern::getNextStateInterval()
 {
     StateInterval interval;
-    interval.state = NO;
+    interval.state = LOW;
 
     int s = 0;
     if (randomState)
@@ -49,10 +49,10 @@ StateInterval RandomPattern::getNextStateInterval()
     
     if (s % 2  == 0)
     {
-        interval.state = NC;
+        interval.state = HIGH;
     }
 
-    if (s == NO)
+    if (s == LOW)
     {
         interval.millisec = randomBetween(minNOMilliSec, maxNOMilliSec + 1);
     }

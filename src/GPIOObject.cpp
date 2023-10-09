@@ -213,16 +213,16 @@ GPIOValue gpio_value_from_string(string value)
 {
     if (value == "1")
     {
-        return HIGH;
+        return GPIOValue::GPIO_HIGH;
     }
-    return LOW;
+    return GPIOValue::GPIO_LOW;
 }
 
 string gpio_value_to_string(GPIOValue value)
 {
     switch (value)
     {
-    case HIGH:
+    case GPIOValue::GPIO_HIGH:
         return "1";
     
     default:

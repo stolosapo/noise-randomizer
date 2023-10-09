@@ -21,10 +21,10 @@ GPIOValue state_to_gpio_value(State state)
 {
     switch (state)
     {
-    case NC:
-        return HIGH;
+    case State::HIGH:
+        return GPIOValue::GPIO_HIGH;
     
     default:
-        return LOW;
+        return GPIOValue::GPIO_LOW;
     }
 }

@@ -3,9 +3,9 @@
 
 enum State
 {
-    NO = 0,
-    
-    NC = 1
+    LOW = 0,
+
+    HIGH = 1
 };
 
 struct StateInterval

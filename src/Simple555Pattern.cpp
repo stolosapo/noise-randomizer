@@ -25,11 +25,11 @@ StateInterval Simple555Pattern::getNextStateInterval()
     int c = incrementCounter();
     
     StateInterval interval;
-    interval.state = NO;
+    interval.state = LOW;
     interval.millisec = noMilliSec;
     if (c % 2 == 0) 
     {
-        interval.state = NC;
+        interval.state = HIGH;
         interval.millisec = ncMilliSec;
     }
 

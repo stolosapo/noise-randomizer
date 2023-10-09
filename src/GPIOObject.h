@@ -17,9 +17,9 @@ enum GPIODirection
 
 enum GPIOValue
 {
-    LOW = 0,
+    GPIO_LOW = 0,
 
-    HIGH = 1
+    GPIO_HIGH = 1
 };
 
 GPIODirection gpio_direction_from_string(string direction);
